@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../jkxtmw/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../jkxtmw/css/common.css">
+    <script src="../jkxtmw/js/jquery.min.js"></script>
+    <script src="../jkxtmw/js/bootstrap.min.js"></script>
+    <script src="../jkxtmw/js/index.js"></script>
+    <title>修改密码</title>
+</head>
+<body>
+<div class="container">
+    {{if .IsLogin}}
+    <div class="nav">
+        <a class="btn btn-default index" href=".">首页</a>
+        <a class="btn btn-default logout">退出</a>
+        <a class="btn btn-default changepassbtn" href="changepass">修改密码</a>
+        <a class="btn btn-default index" href="log">系统日志</a>
+    </div>
+    <div class="col">
+        <form class="form-login">
+            <h3 class="text-center">修改密码</h3>
+            <div class="form-group">
+                <label for="oldpass">原密码：</label>
+                <input type="text" name='oldpass' class="form-control" id="oldpass" placeholder="oldPassword" autofocus required>
+            </div>
+            <div class="form-group">
+                <label for="password1">新密码：</label>
+                <input type="password" name='password' class="form-control" id="password1" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="password2">确认新密码：</label>
+                <input type="password" name='password' class="form-control" id="password2" placeholder="Password" required>
+            </div>
+        </form>
+        <div>
+            <button  class="btn btn-primary float-right" onclick="pwd()">修改</button>
+        </div>
+    </div>
+    {{ else }}
+    <p>您还未登录,请登录</p>
+    {{ end }}
+</div>
+</body>
+</html>

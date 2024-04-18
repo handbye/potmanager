@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../jkxtmw/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../jkxtmw/css/common.css">
+    <script src="../jkxtmw/js/jquery.min.js"></script>
+    <script src="../jkxtmw/js/bootstrap.min.js"></script>
+    <script src="../jkxtmw/js/index.js"></script>
+    <title>蜜罐配置</title>
+</head>
+<body>
+<div class="container">
+    <div class="col">
+
+        {{if eq .res.Configid 1004}}
+        <form class="form-login">
+            <input type="hidden" id='configid' value="{{.res.Configid}}">
+            <h3 class="text-center">mysql蜜罐配置</h3>
+            <div class="form-group">
+                <label for="port">启动端口：</label>
+                <input type="text" name='port' class="form-control" id="port" placeholder="Port" autofocus required value="{{.res.Port}}">
+            </div>
+            <div class="form-group">
+                <label for="filelist">蜜罐需读取文件：(以逗号,分隔开 示例格式:/etc/passwd,C:/Windows/PFRO.log)</label>
+                <input type="text" name='filelist' class="form-control" id="filelist" placeholder="filelist" required value="{{.res.Filelist}}">
+            </div>
+            <div class="form-group">
+                <label for="username">mysql用户名：(不输入则不需要认证)</label>
+                <input type="text" name='username' class="form-control" id="username" placeholder="Username" value="{{.res.Username}}">
+            </div>
+            <div class="form-group">
+                <label for="password">mysql密码：</label>
+                <input type="password" name='password' class="form-control" id="password" placeholder="Password" value="{{.res.Password}}">
+            </div>
+        </form>
+        {{end}}
+
+        {{if eq .res.Configid 1001}}
+        <form class="form-login">
+            <input type="hidden" id='configid' value="{{.res.Configid}}">
+            <h3 class="text-center">BurpSuite蜜罐配置</h3>
+            <div class="form-group">
+                <label for="port">启动端口：</label>
+                <input type="text" name='port' class="form-control" id="port" placeholder="Port" autofocus required value="{{.res.Port}}">
+            </div>
+            <div class="form-group">
+                <label for="payload">Payload：</label>
+                <input type="text" name='payload' class="form-control" id="payload" placeholder="payload" required value="{{.res.Payload}}">
+            </div>
+        </form>
+        {{end}}
+
+        {{if eq .res.Configid 1003}}
+        <form class="form-login">
+            <input type="hidden" id='configid' value="{{.res.Configid}}">
+            <h3 class="text-center">Goby蜜罐</h3>
+            <div class="form-group">
+                <label for="port">启动端口：</label>
+                <input type="text" name='port' class="form-control" id="port" placeholder="Port" autofocus required value="{{.res.Port}}">
+            </div>
+            <div class="form-group">
+                <label for="ip">ip地址：（公网ip）</label>
+                <input type="text" name='ip' class="form-control" id="ip" placeholder="IP" autofocus required value="{{.res.Ip}}">
+            </div>
+            <div class="form-group">
+                <label for="payload">Payload：</label>
+                <input type="text" name='payload' class="form-control" id="payload" placeholder="payload" required value="{{.res.Payload}}">
+            </div>
+        </form>
+        {{end}}
+
+        {{if eq .res.Configid 1002}}
+        <form class="form-login" id="uploadForm" enctype="multipart/form-data">
+            <input type="hidden" id='configid' value="{{.res.Configid}}">
+            <input type="hidden" id='fileexists' value="{{.res.Fileexists}}">
+            <h3 class="text-center">VPN蜜罐</h3>
+            <div class="form-group">
+                <label for="port">启动端口：</label>
+                <input type="text" name='port' class="form-control" id="port" placeholder="Port" autofocus required value="{{.res.Port}}">
+            </div>
+            <div class="form-group">
+                <label for="file">蜜罐反制文件：</label>
+                <input type="file" name='file' class="form-control" id="file" placeholder="file" required>
+            </div>
+            <div class="form-group">
+                <p>已上传文件：{{.filename}}</p>
+            </div>
+        </form>
+        {{end}}
+
+        <div>
+            <button  class="btn btn-primary float-right" onclick="potConfigSave()">保存</button>
+            <button  class="btn btn-primary float-right" onclick="cancel()">取消</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../jkxtmw/css/font.css">
+    <link rel="stylesheet" href="../jkxtmw/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../jkxtmw/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../jkxtmw/css/common.css">
+    <script src="../jkxtmw/js/jquery.min.js"></script>
+    <script src="../jkxtmw/js/bootstrap.min.js"></script>
+    <script src="../jkxtmw/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../jkxtmw/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../jkxtmw/js/Pagination.js"></script>
+    <script src="../jkxtmw/js/common.js"></script>
+    <script src="../jkxtmw/js/index.js"></script>
+    <title>日志</title>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a class="btn btn-default index" href="/{{ .adminurl }}" role="button">首页</a>
+        <a class="btn btn-default logout"  role="button">退出</a>
+        <a class="btn btn-default changepassbtn" href="/{{ .adminurl }}/changepass">修改密码</a>
+        <a class="btn btn-default index" href="/{{ .adminurl }}/log" role="button">系统日志</a>
+    </div>
+    <div class="form-inline">
+        <span>日期：</span>
+        <input name="fromDate" id="startDate" type="text" class="daterangepicker form-control form1" placeholder="开始日期" readonly/>
+        -
+        <input name="fromDate" id="endDate" type="text" class="daterangepicker form-control form1" placeholder="结束日期" readonly/>
+    </div>
+    <button id="btn1"  class="btn btn-default">查询</button>
+
+    <table class="table table-bordered">
+        <caption>日志数据</caption>
+        <thead>
+        <tr>
+            <th>时间</th>
+            <th>原始日志</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ range $i, $v := .res }}
+        <tr id="tr-{{ $i }}">
+            <td id="time-{{ $i }}">{{$v.Time}}</td>
+            <td id="message-{{ $i }}">{{$v.Full_message}}</td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+    <div class="myPagination"></div>
+</div>
+</body>
+</html>

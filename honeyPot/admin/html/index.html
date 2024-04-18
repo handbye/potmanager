@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>蜜罐管理系统</title>
+    <link rel="stylesheet" href="../jkxtmw/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../jkxtmw/css/common.css">
+    <script src="../jkxtmw/js/jquery.min.js"></script>
+    <script src="../jkxtmw/js/bootstrap.min.js"></script>
+    <script src="../jkxtmw/js/index.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="nav">
+        <a class="btn btn-default index" href=".">首页</a>
+        <a class="btn btn-default logout">退出</a>
+        <a class="btn btn-default changepassbtn" href="changepass">修改密码</a>
+        <a class="btn btn-default index" href="log">系统日志</a>
+    </div>
+    <div id="content">
+        <table class="table table-striped">
+            <caption>蜜罐列表</caption>
+            <thead>
+            <tr>
+                <th>名称</th>
+                <th>类型</th>
+                <th>状态</th>
+                <th>日志</th>
+                <th>配置</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ range .res }}
+            <tr>
+                <td>{{ .Name }}</td>
+                <td>{{ .Pottype }}</td>
+                {{ if eq .State 0 }}
+                <td>已关闭</td>
+                {{ end }}
+                {{ if eq .State 1 }}
+                <td>运行中</td>
+                {{ end }}
+                <td><a class="btn btn-default" href="log/{{ .Url }}">查看日志</a></td>
+                <td><a class="btn btn-default" href="potconfig?configid={{ .Configid}}" role="button">配置参数</a></td>
+                <td><a class="btn btn-default" href="#" role="button" onclick="potcontrol({{.Configid}},{{.State}})">
+                    {{ if eq .State 0 }}
+                    启动
+                    {{ end }}
+                    {{ if eq .State 1 }}
+                    关闭
+                    {{ end }}
+                </a></td>
+            </tr>
+            {{ end }}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
