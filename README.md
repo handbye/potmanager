@@ -1,8 +1,14 @@
 # potManager
 
-使用方法：
+这个项目是由[这个项目](https://github.com/handbye/SimpleHoneyPot)演化而来的，加了web管理和详细的日志记录。
 
-请确保`register.exe`(windows下)和`register`(linux下)存在于蜜罐管理平台运行的所在目录下。
+特点：
+
+- 跨平台
+- 编译后仅一个二进制文件，无任何依赖
+- 方便使用可自行扩展插件支持其他蜜罐
+
+使用方法：
 
 使用`main.exe -h`即可查看启动帮助
 
